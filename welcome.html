@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome</title>
+</head>
+<body>
+  <div id="heading">Welcome</div>
+  <!-- <div id="name"></div>
+  <div id="email"></div>
+  <div id="password"></div> -->
+  <a href="login.html">LogOut</a>
+
+  <!-- The below is the JS code -->
+  <script>
+    // Function to retrieve cookie by name
+    function getCookie(name) {
+      
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        const cookieParts = cookie.split('=');
+        if (cookieParts[0] === name) {
+          return decodeURIComponent(cookieParts[1]);
+        }
+      }
+      return null;
+    }
+
+    // Get name and email from cookies
+    const name = getCookie('name');
+    // const email = getCookie('email');
+    // const password = getCookie('password');
+
+    // Display name and email
+    if (name) {
+      const userDataElement = document.getElementById('heading');
+      userDataElement.innerHTML = `
+        <h1>Welcome ${name}. Have a great day</h1>
+      `;
+    } 
+    else {
+      document.getElementById('heading').textContent = 'Name not found in cookies.';
+    }
+
+    // if (email) {
+    //   const userDataElement = document.getElementById('email');
+    //   userDataElement.innerHTML = `
+    //     <p>Email: ${email}</p>
+    //   `;
+    // }
+    // else {
+    //   document.getElementById('email').textContent = 'Email not found in cookies.';
+    // }
+
+    // if (password) {
+    //   const userDataElement = document.getElementById('password');
+    //   userDataElement.innerHTML = `
+    //     <p>Password: ${password}</p>
+    //   `;
+    // }
+    // else {
+    //   document.getElementById('email').textContent = 'Email not found in cookies.';
+    // }
+  </script>
+</body>
+</html>

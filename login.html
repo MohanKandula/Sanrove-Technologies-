@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!--<link rel="stylesheet" href="registration.css">-->
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <form id="loginForm">
+      <input
+        type="email"
+        id="loginEmail"
+        name="email"
+        placeholder="Email"
+        autocomplete="email"
+        required
+      /><br />
+      <input
+        type="password"
+        id="loginPassword"
+        name="password"
+        placeholder="Password"
+        autocomplete="current-password"
+        required
+      /><br />
+      <button type="submit">Submit</button><br />
+      <button><a href="forgot_password.html">Forgot Password</a></button><br />
+      <!--<button type="button" onclick="handleForgetPassword()">Forget Password</button>-->
+    </form>
+    <script>
+      function getCookie(name) {
+        const cookies = document.cookie.split(";");
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          const cookieParts = cookie.split("=");
+          if (cookieParts[0] === name) {
+            return decodeURIComponent(cookieParts[1]);
+          }
+        }
+        return null;
+      }
+      document.getElementById("loginForm").addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent form submission
+
+          // Retrieve user credentials from cookies
+          var storedEmail = getCookie("email");
+          var storedPassword = getCookie("password");
+
+          // Retrieve user input
+          var enteredEmail = document.getElementById("loginEmail").value;
+          var enteredPassword = document.getElementById("loginPassword").value;
+
+          // Compare user input with stored credentials
+          if (
+            enteredEmail === storedEmail &&
+            enteredPassword === storedPassword
+          ) {
+            alert("Login successful!");
+            // Redirect to the authenticated page
+            window.location.href = "welcome.html";
+          } else {
+            alert("Invalid email or password. Please try again.");
+          }
+        });
+    </script>
+  </body>
+    
+</html>
